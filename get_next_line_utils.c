@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/08 14:48:37 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:54:56 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != (const char)c)
 	{
 		if (i == len)
-			return (0);
+			return ((char *)s);
 		i++;
 	}
 	return ((char *)s + i + 1);
@@ -142,6 +142,6 @@ char *ft_write_line(int pos, char *buffer)
 	}
 	//free (buffer);
 	buffer_str[i] = '\0';
-	return (buffer_str);	
+	return (buffer_str);
 }
 

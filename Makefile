@@ -6,7 +6,7 @@
 #    By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 13:20:07 by aestraic          #+#    #+#              #
-#    Updated: 2022/07/08 12:27:11 by aestraic         ###   ########.fr        #
+#    Updated: 2022/07/13 16:22:22 by aestraic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,11 @@ library:
 	
 #	@echo MAKE PRINTF
 	@make all -C	$(SRC_PATH)/ft_printf
+
+val: library
+	gcc -Wall -Wextra -Werror -I$(HEADER_PATH) -c $(SRC) main.c
+	gcc -Wall -Wextra -Werror -I$(HEADER_PATH) $(COMPILED_SRC) main.o -L$(LIB_PATH) -lft -o $(COMPILED_MAIN)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(COMPILED_MAIN)
 
 move:
 	@make move -C	$(SRC_PATH)/libft

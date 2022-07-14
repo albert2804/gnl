@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/13 13:04:02 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:54:16 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,23 @@ void	ft_free(void *ptr)
 {
 	if (ptr)
 		free(ptr);
-	else
-		ptr = NULL;
+	ptr = NULL;	
 }
 
 char	*read_into_buffer(int fd, char *buffer)
 {
-	int		a;
+	//int		a;
 	char	*buffer_ret;
 	char	*read_str;
 
-	read_str = malloc(BUFFER_SIZE * sizeof(char));
-	a = read(fd, read_str, BUFFER_SIZE);
+	//buffer = malloc(0);
+	read_str = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	//a = read(fd, read_str, BUFFER_SIZE);
+	read(fd, read_str, BUFFER_SIZE);
+	// ft_printf("READ: %s\n", read_str);
 	buffer_ret = ft_strjoin(buffer, read_str);
-	free (buffer);
-	free (read_str);
+	//ft_free (buffer);
+	ft_free (read_str);
 	return (buffer_ret);
 }
 
@@ -54,50 +56,67 @@ char	*make_line(char *buffer)
 
 	pos = ft_check_pos_of_nline_in_buffer(buffer);
 	i = 0;
-	line = malloc(sizeof(char) * pos);
+	line = ft_calloc(sizeof(char), pos);
 	while (i < pos)
 	{
 		line[i] = buffer[i];
 		i ++;
 	}
-	free (buffer);
+	//free (buffer);
+	line[i] = '\0';
 	return (line);
 }
 
+// try to make read_into_buffer void function with prototype
+// void read_into_buffer(fd, char *buffer, char *buffer_return, int read_byte);
+//
 char	*get_next_line1(int fd)
 {
-	int			a;
 	char		*line;
-	static char	*buffer;
+	static char	*buffer = NULL;
 
-	a = 0;
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	if (!buffer)
+		buffer = ft_calloc(sizeof(char), BUFFER_SIZE);
+	//ft_printf("R0Buffer: %s\n", buffer);
 	while (1)
 	{
-		buffer = read_into_buffer(fd, buffer);
 		if (ft_check_for_newline_in_buffer(buffer) == 1)
+		{
 			break ;
+		}
+		buffer = read_into_buffer(fd, buffer);
+		// ft_printf("READ_Buffer: %s\n", buffer);
 	}
 	line = make_line(buffer);
+	//ft_printf("BEFORE_Buffer: %s\n", buffer);
+	// ft_printf("LINE: %s\n", line);
 	buffer = make_new_buffer(buffer);
+	//ft_printf("-----\nCHECK_NBUFFER: %d\n-----\n", ft_check_for_newline_in_buffer(buffer));
+	//ft_printf("AFTER_Buffer: %s\n", buffer);
 	return (line);
 }
 
 int	main(void)
 {
-	static char	*buffer = NULL;
+	//static char	*buffer;
 	char		*line;
 	int fd = 0;
 
 
-	buffer = "get\n\n\nnext";
+	//buffer = "get\n\n\nnext";
 	fd = open("text.txt", O_RDONLY);
 	line = get_next_line1(fd);
 	ft_printf("LINE: %s", line);
+	ft_free(line);
 	line = get_next_line1(fd);
 	ft_printf("LINE: %s", line);
+	ft_free(line);
+	line = get_next_line1(fd);
+	ft_printf("LINE: %s", line);
+	ft_free(line);
+
 	//ft_printf("\nBUFFER--------: %s", buffer);
-	//system("leaks main.out");
+	system("leaks main.out");
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:25:09 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/06 17:52:30 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:44:57 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if ((!s1) || (!s2))
 		return (NULL);
-	size_dest = ft_strlen(s1) + ft_strlen(s2) + 1;
+	size_dest = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc(sizeof(char) * size_dest);
 	if (!str)
 		return (NULL);
@@ -37,6 +37,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str[i + j] = s2[j];
 		j++;
 	}
-	str[i + j] = '\0';
 	return (str);
 }
