@@ -6,60 +6,91 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/07 16:43:44 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:50:24 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <get_next_line.h>
 
-char *get_next_line(int fd)
+char	*read_into_buffer(int fd, char *buffer)
 {
-	char buffer_read[BUFFER_SIZE + 1];
-	static char *buffer_tmp = "";
-	char *line;
-	int read_line;
-	int pos;
-	int value_nl;
-	
-	read_line = 1;
-	if (buffer_tmp == (char *) '0' || (fd < 0 || BUFFER_SIZE <= 0))
-	{
-		//free (buffer_tmp);
-		return NULL;
-	}
-	//printf("READLINE VOR WHILE: %d\n", read_line);
-	//while (read_line > 0)// && ft_strlen(buffer_tmp) > 0)
-	while (read_line > 0)// && ft_strlen(buffer_tmp) > 0)
-	{
-		read_line = read(fd, buffer_read, BUFFER_SIZE);
-		//printf("\nREADLINE in WHILE: %d\n", read_line);
-		buffer_read[BUFFER_SIZE] = '\0';
-		if (read_line < BUFFER_SIZE)
-			buffer_read[read_line] = '\0';
-		//printf("\nBUFFER_READ: %s", buffer_read);
-		//char *tmp = buffer_tmp;
-		buffer_tmp = ft_strjoin(buffer_tmp, buffer_read);
-		// if (tmp != 0)
-		// 	free (tmp);
-		value_nl = ft_check_for_newline_in_buffer(buffer_tmp);
-		//printf("\n---BUFFER_TMP\n%s\n----\n", buffer_tmp);
-		if (value_nl == 1)
-		{
-			pos = ft_check_pos_of_nline_in_buffer(buffer_tmp);
-			line = ft_write_line(pos, buffer_tmp);
-			buffer_tmp = ft_strchr(buffer_tmp, '\n');
-			return(line);
-		}
-		else if (value_nl == 0 && read_line < BUFFER_SIZE)
-		{
-			//printf("\nVALUE");
-			pos = ft_strlen(buffer_tmp);
-			//printf("%d", pos);
-			line = ft_write_line(pos, buffer_tmp);
-			buffer_tmp = (char *)'0';
-			return (line);
-		}
-	}
-	return (buffer_tmp);
+	int		a;
+	char	*buffer_ret;
+	char	*read_str;
+
+	//buffer = malloc(0);
+	read_str = malloc(BUFFER_SIZE * sizeof(char) + 1);
+	a = read(fd, read_str, BUFFER_SIZE);
+	// ft_printf("\nREADBYTES:%d\n", a);
+	//buffer_ret = NULL;
+	//read(fd, read_str, BUFFER_SIZE);
+	read_str[BUFFER_SIZE] = '\0';
+	//ft_printf("READ: %s\n", read_str);
+	buffer_ret = ft_strjoin(buffer, read_str);
+	free (read_str);
+	free (buffer);
+	return (buffer_ret);
 }
 
+char	*make_new_buffer(char *read)
+{
+	char	*buffer;
+	
+	buffer = ft_strdup(ft_strchr(read, '\n'));
+	free(read);
+	return (buffer);
+}
+
+char	*make_line(char *buffer)
+{
+	char	*line;
+	int		i;
+	int		pos;
+
+	pos = ft_check_pos_of_nline_in_buffer(buffer);
+	i = 0;
+	line = malloc(sizeof(char) * pos + 1);
+	while (i < pos)
+	{
+		line[i] = buffer[i];
+		i ++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*buffer;
+
+	if (!buffer)
+	{
+		buffer = malloc(1 * sizeof(char) + 1);
+		buffer[0] = '\0';
+	}
+	// ft_printf("R0Buffer: %s\n", buffer);
+	while (1)
+	{
+		if (ft_check_for_newline_in_buffer(buffer) == 1)
+			break ;
+		buffer = read_into_buffer(fd, buffer);
+		// if (buffer == NULL)
+		// 	return (buffer);
+		//ft_printf("%s", buffer);
+		// if (buffer == NULL)
+		// 	return (buffer);
+			//return (NULL);
+		// ft_printf("LOOP_Buffer: %s\n", buffer);
+	}
+	line = make_line(buffer);
+	
+	// ft_printf("OLD_Buffer: %s\n", buffer);
+	buffer = make_new_buffer(buffer);
+	
+	//free(buffer);
+	//ft_printf("-----\nCHECK_NBUFFER: %d\n-----\n", ft_check_for_newline_in_buffer(buffer));
+	// ft_printf("NEW_Buffer: %s\n", buffer);
+	// ft_printf("LINE: %s\n", line);
+	return (line);
+}

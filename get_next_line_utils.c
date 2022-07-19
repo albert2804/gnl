@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/13 18:54:56 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:28:16 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 
 size_t	ft_strlen(const char *c)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
+	if (c == NULL)
+		return (0);
 	while (c[count] != '\0')
 	{
 		count++;
@@ -27,26 +29,8 @@ size_t	ft_strlen(const char *c)
 	return (count);
 }
 
-char	*ft_strdup(const char *s)
-{
-	int		n;
-	int		i;
-	char	*s_cpy;
-
-	i = 0;
-	n = ft_strlen((char *)s);
-	s_cpy = (char *)malloc(n * sizeof(char) + 1);
-	if (!s_cpy)
-		return (NULL);
-	while (i <= n)
-	{
-		s_cpy[i] = s[i];
-		i++;
-	}
-	return (s_cpy);
-}
 /*
-updated strchr. changed a +1 in the return value.
+updated strchr. changed a + 1 in the return value.
 */
 char	*ft_strchr(const char *s, int c)
 {
@@ -58,7 +42,9 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != (const char)c)
 	{
 		if (i == len)
+		{
 			return ((char *)s);
+		}
 		i++;
 	}
 	return ((char *)s + i + 1);
@@ -75,8 +61,8 @@ char *ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s2 && s1)
 		return ft_strdup(s1);
-	size_dest = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(sizeof(char) * size_dest);
+	size_dest = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * size_dest + 1);
 	if (!str || (!s1 && !s2))
 		return NULL;
 	while (i < (int) ft_strlen(s1))
@@ -128,20 +114,22 @@ int ft_check_pos_of_nline_in_buffer(char *buffer)
 		}
 	return(i);
 }
-char *ft_write_line(int pos, char *buffer)
-{
-	int i;
-	char *buffer_str;
 
-	buffer_str = (char *)malloc(pos * sizeof(char) + 1);
+char	*ft_strdup(const char *s)
+{
+	int		n;
+	int		i;
+	char	*s_cpy;
+
 	i = 0;
-	while (i < pos)
+	n = ft_strlen((char *)s);
+	s_cpy = (char *)malloc(n * sizeof(char) + 1);
+	if (!s_cpy)
+		return (NULL);
+	while (i <= n)
 	{
-		buffer_str[i] = buffer[i];
+		s_cpy[i] = s[i];
 		i++;
 	}
-	//free (buffer);
-	buffer_str[i] = '\0';
-	return (buffer_str);
+	return (s_cpy);
 }
-
