@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/19 18:53:02 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:04:14 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,9 @@ int	main(void)
 	fd = open("text_alpha.txt", O_RDONLY);
 	line = get_next_line(fd);
 	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	ft_printf("LINE: %s", line);
 	free(line);
 	line = get_next_line(fd);
 	ft_printf("LINE: %s", line);
