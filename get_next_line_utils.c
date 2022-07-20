@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/20 15:17:14 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:59:43 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s + i + 1);
 }
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	int size_dest;
-	int i;
-	int j;
+	char	*str;
+	int		size_dest;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
 	if (!s2 && s1)
-		return ft_strdup(s1);
+		return (ft_strdup(s1));
 	size_dest = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc(sizeof(char) * size_dest + 1);
 	if (!str || (!s1 && !s2))
-		return NULL;
+		return (NULL);
 	while (i < (int) ft_strlen(s1))
 	{
 		str[i] = s1[i];
@@ -75,7 +75,6 @@ char *ft_strjoin(char const *s1, char const *s2)
 		str[i + j] = s2[j];
 		j++;
 	}
-
 	str[i + j] = '\0';
 	return (str);
 }
@@ -84,52 +83,34 @@ char *ft_strjoin(char const *s1, char const *s2)
 check if there is an occurence of a \\n.
 Returns 1 for a found \\n, 0 for none
 */
-int ft_check_for_newline_in_buffer(char *buffer)
+int	ft_check_for_newline_in_buffer(char *buffer)
 {
-	int len;
-	int i;
-	
+	int	len;
+	int	i;
+
 	i = 0;
 	len = ft_strlen(buffer);
 	while (i < len)
-		{
-			if (buffer[i] == '\n')
-				return (1);
-			i++;
-		}
-	return(0);
-}
-int ft_check_pos_of_nline_in_buffer(char *buffer)
-{
-	int len;
-	int i;
-	
-	i = 0;
-	len = ft_strlen(buffer);
-	while (i < len)
-		{
-			if (buffer[i] == '\n')
-				return (i + 1);
-			i++;
-		}
-	return(i);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		n;
-	int		i;
-	char	*s_cpy;
-
-	i = 0;
-	n = ft_strlen((char *)s);
-	s_cpy = (char *)malloc(n * sizeof(char) + 1);
-	if (!s_cpy)
-		return (NULL);
-	while (i <= n)
 	{
-		s_cpy[i] = s[i];
+		if (buffer[i] == '\n')
+			return (1);
 		i++;
 	}
-	return (s_cpy);
+	return (0);
+}
+
+int	ft_check_pos_of_nline_in_buffer(char *buffer)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	len = ft_strlen(buffer);
+	while (i < len)
+	{
+		if (buffer[i] == '\n')
+			return (i + 1);
+		i++;
+	}
+	return (i);
 }

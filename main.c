@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/19 19:04:14 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:48:07 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,14 +138,12 @@ int	main(void)
 	line = get_next_line(fd);
 	ft_printf("LINE: %s", line);
 	free(line);
-	// line = get_next_line(fd);
-	// ft_printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// ft_printf("LINE: %s", line);
-	// ft_free(line);
+	line = get_next_line(fd);
+	ft_printf("LINE: %s", line);
+	free(line);
+
 
 	//ft_printf("\nBUFFER--------: %s", buffer);
-	//system("leaks main.out");
+	system("leaks main.out");
 
 }
