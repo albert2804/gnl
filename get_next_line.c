@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/20 16:56:35 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:31:30 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ char	*make_new_buffer(char *read, int *a)
 	char	*buffer;
 
 	buffer = NULL;
-	if (*a > 0)
+	if (*a > 0 || ft_strlen(read) > 0)
 	{
 		buffer = ft_strdup(ft_strchr(read, '\n'));
 		free(read);
 	}
-	else if (*a == 0)
+	else if (*a == 0 && ft_strlen(read) == 0)
 	{
 		free(buffer);
 		free(read);
@@ -73,9 +73,9 @@ char	*make_line(char *buffer)
 	line = NULL;
 	pos = ft_check_pos_of_nline_in_buffer(buffer);
 	i = 0;
+	line = malloc(sizeof(char) * pos + 1);
 	if (ft_check_for_newline_in_buffer(buffer) == 1)
 	{
-		line = malloc(sizeof(char) * pos + 1);
 		while (i < pos)
 		{
 			line[i] = buffer[i];
@@ -103,14 +103,25 @@ char	*get_next_line(int fd)
 		if (ft_check_for_newline_in_buffer(buffer) == 1)
 			break ;
 		buffer = read_into_buffer(fd, buffer, &a);
+		//ft_printf("READ_BYTES %d\n", a);
+		//ft_printf("buffer %s\n", buffer);
+		// if (a == 0)
+		// 	break ;
 	}
 	line = make_line(buffer);
+	//ft_printf("\nmakeLine\n");
 	buffer = make_new_buffer(buffer, &a);
+	//ft_printf("\nmakenewbuffern\n");
 	if (a == 0)
 	{
-		free(buffer);
-		return (NULL);
+		line = buffer;
+		//ft_printf("\na = 0\n");
+		//free(buffer);
+		return (line);
 	}
 	else
+	{
+		//ft_printf("\na > 0\n");
 		return (line);
+	}
 }

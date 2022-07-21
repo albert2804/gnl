@@ -6,7 +6,7 @@
 #    By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 13:20:07 by aestraic          #+#    #+#              #
-#    Updated: 2022/07/15 12:45:34 by aestraic         ###   ########.fr        #
+#    Updated: 2022/07/21 12:43:38 by aestraic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,11 @@ obj: $(OBJ)
 exec: $(EXE)
 %.out : %.c 	
 	cc -Wall -Wextra -Werror -I$(HEADER_PATH) -L$(LIB_PATH) -lft $(COMPILED_SRC) $^ -o $@
+
+# exec: $(EXE)
+# %.out : %.c 	
+# 	cc -Wall -Wextra -Werror -fsanitize=address -g -I$(HEADER_PATH) -L$(LIB_PATH) -lft $(COMPILED_SRC) $^ -o $@
+
 
 library:
 #	@echo MAKE LIBFT
