@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/25 12:11:38 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:20:39 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ char	*ft_strchr(char *s, int c)
 char	*ft_strjoin(char *s1, char *s2, int i, int j)
 {
 	char	*str;
-	int len1;
+	int		len1;
+	int		len2;
 
 	if (!s2 && s1)
 		return (ft_strdup(s1));
@@ -61,16 +62,11 @@ char	*ft_strjoin(char *s1, char *s2, int i, int j)
 	if (!str || (!s1 && !s2))
 		return (NULL);
 	len1 = ft_strlen(s1);
-	while (i < len1)
-	{
+	len2 = ft_strlen(s2);
+	while (++i < len1)
 		str[i] = s1[i];
-		i++;
-	}
-	while (j < (int) ft_strlen(s2))
-	{
+	while (++j < len2)
 		str[i + j] = s2[j];
-		j++;
-	}
 	if (s1)
 		free (s1);
 	str[i + j] = '\0';

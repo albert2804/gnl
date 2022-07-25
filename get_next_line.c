@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/25 12:12:18 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:21:41 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ char	*ft_strdup(char *s)
 void	read_into_buffer(int fd, char **buffer, int *a)
 {
 	char	*read_str;
+
 	read_str = malloc(BUFFER_SIZE * sizeof(char) + 1);
 	*a = read(fd, read_str, BUFFER_SIZE);
 	read_str[*a] = '\0';
 	if (*a > 0)
-		*buffer = ft_strjoin(*buffer, read_str, 0, 0);
+		*buffer = ft_strjoin(*buffer, read_str, -1, -1);
 	free(read_str);
 }
 
 char	*make_new_buffer(char *read, int *a)
 {
 	char	*buffer;
-	
+
 	buffer = NULL;
 	if (*a > 0)
 	{
@@ -100,8 +101,7 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	a = 1;
-
-	if (BUFFER_SIZE <= 0 || read(fd,0, 0) < 0)
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	while (a > 0)
 	{
