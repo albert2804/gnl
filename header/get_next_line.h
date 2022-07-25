@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:26:10 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/20 16:58:59 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 09:56:22 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdarg.h>
-# include <libft.h>
+# include <stdio.h>
+
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *c);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(char *c);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2, int i, int j);
 int		ft_check_for_newline_in_buffer(char *buffer);
-int		ft_check_pos_of_nline_in_buffer(char *buffer);
-char	*make_line(char *buffer);
+//int		ft_check_pos_of_nline_in_buffer(char *buffer);
+char	*make_line(char	*buffer);
 char	*make_new_buffer(char *read, int *a);
-char	*read_into_buffer(int fd, char *buffer, int *a);
-char	*ft_strdup(const char *s);
+void	read_into_buffer(int fd, char **buffer_ret, int *a);
+char	*ft_strdup(char *s);
 #endif

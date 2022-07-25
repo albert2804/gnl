@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/21 14:30:20 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 09:55:57 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,41 @@ int	main(void)
 	printf("LINE: %s", line);
 	free(line);
 	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
+	printf("LINE: %s", line);
 	free(line);
 	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	ft_printf("LINE: %s", line);
+	printf("LINE: %s", line);
 	free(line);
 	// line = get_next_line(fd);
-	// ft_printf("LINE: %s", line);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("LINE: %s", line);
 	// free(line);
 
 
-	//ft_printf("\nBUFFER--------: %s", buffer);
-	system("leaks main.out");
+// 	//printf("\nBUFFER--------: %s", buffer);
+system("leaks main.out");
 
 }
