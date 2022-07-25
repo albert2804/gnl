@@ -6,14 +6,14 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/25 11:23:58 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:11:38 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <get_next_line.h>
+#include "get_next_line.h"
 
 size_t	ft_strlen(char *c)
 {
@@ -53,15 +53,15 @@ char	*ft_strchr(char *s, int c)
 char	*ft_strjoin(char *s1, char *s2, int i, int j)
 {
 	char	*str;
+	int len1;
 
 	if (!s2 && s1)
 		return (ft_strdup(s1));
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!str || (!s1 && !s2))
-	{	
 		return (NULL);
-	}
-	while (i < (int) ft_strlen(s1))
+	len1 = ft_strlen(s1);
+	while (i < len1)
 	{
 		str[i] = s1[i];
 		i++;
@@ -73,8 +73,6 @@ char	*ft_strjoin(char *s1, char *s2, int i, int j)
 	}
 	if (s1)
 		free (s1);
-	printf("ADRESSEinSTRJOIN: %p\n", str);
-	printf("String: %s\n", str);
 	str[i + j] = '\0';
 	return (str);
 }

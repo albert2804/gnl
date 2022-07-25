@@ -6,7 +6,7 @@
 /*   By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:17:37 by aestraic          #+#    #+#             */
-/*   Updated: 2022/07/25 09:55:57 by aestraic         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:00:33 by aestraic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <get_next_line.h>
+#include "get_next_line.h"
 
 int	main(void)
 {
@@ -34,33 +34,33 @@ int	main(void)
 	line = get_next_line(fd);
 	printf("LINE: %s", line);
 	free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("LINE: %s", line);
-	// free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("LINE: %s", line);
+	free(line);
 
 
 // 	//printf("\nBUFFER--------: %s", buffer);

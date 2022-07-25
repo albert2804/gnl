@@ -6,7 +6,7 @@
 #    By: aestraic <aestraic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 13:20:07 by aestraic          #+#    #+#              #
-#    Updated: 2022/07/25 10:39:48 by aestraic         ###   ########.fr        #
+#    Updated: 2022/07/25 12:00:21 by aestraic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ all:  obj exec
 
 obj: $(OBJ)
 %.o : %.c 
-	gcc -Wall -Wextra -Werror -I$(HEADER_PATH) -c $^ 
+	gcc -Wall -Wextra -Werror  -c $^ 
 
 exec: $(EXE)
 %.out : %.c 	
-	gcc -Wall -Wextra -Werror -I$(HEADER_PATH) $(COMPILED_SRC) $^ -o $@
+	gcc -Wall -Wextra -Werror  $(COMPILED_SRC) $^ -o $@
 
 # exec: $(EXE)
 # %.out : %.c 	
